@@ -1,0 +1,30 @@
+data:
+  data_flag: 'bloodmnist'
+  data_dir: './data'
+  img_size: 32
+  batch_size: 128
+
+model:
+  in_channels: 3
+  out_channels: 3
+  time_dim: 256
+  timesteps: 1000
+
+training:
+  epochs: 20
+  lr: 0.0001  
+  accelerator: "auto"
+  devices: 1
+  log_every_n_steps: 10
+
+logging:
+  log_dir: "tb_logs"
+  experiment_name: "ddpm_bloodmnist"
+  save_path: "ddpm_unet_bloodmnist_lit.pth"
+  output_dir: "results"
+
+inference:
+  checkpoint_path: "results/weights/best-model-epoch=19-val_loss=0.02.ckpt"
+  sample_batch_size: 64
+  save_name: "generated_samples.png"
+  output: "inference_samples"
